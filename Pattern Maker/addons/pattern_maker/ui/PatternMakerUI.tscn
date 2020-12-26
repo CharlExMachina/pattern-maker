@@ -1,0 +1,191 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/pattern_maker/fonts/NotoSans-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://addons/pattern_maker/ui/PatternMakerUI.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 1 )
+
+[node name="PatternMakerUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 100 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+follow_focus = true
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UI" type="VBoxContainer" parent="Scroll"]
+margin_right = 389.0
+margin_bottom = 224.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Layout" type="VBoxContainer" parent="Scroll/UI"]
+margin_right = 389.0
+margin_bottom = 224.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ToolBox" type="HBoxContainer" parent="Scroll/UI/Layout"]
+margin_right = 389.0
+margin_bottom = 20.0
+custom_constants/separation = 15
+
+[node name="CreatePatternCollection" type="Button" parent="Scroll/UI/Layout/ToolBox"]
+margin_right = 170.0
+margin_bottom = 20.0
+text = "Create pattern collection"
+
+[node name="SaveChanges" type="Button" parent="Scroll/UI/Layout/ToolBox"]
+margin_left = 185.0
+margin_right = 282.0
+margin_bottom = 20.0
+text = "Save changes"
+
+[node name="LoadPattern" type="Button" parent="Scroll/UI/Layout/ToolBox"]
+margin_left = 297.0
+margin_right = 389.0
+margin_bottom = 20.0
+text = "Load pattern"
+
+[node name="Props" type="VBoxContainer" parent="Scroll/UI/Layout"]
+margin_top = 24.0
+margin_right = 389.0
+margin_bottom = 224.0
+
+[node name="SpawningProperties" type="Label" parent="Scroll/UI/Layout/Props"]
+margin_right = 389.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 1 )
+text = "Spawning Properties"
+
+[node name="TimeToStartSpawning" type="HBoxContainer" parent="Scroll/UI/Layout/Props"]
+margin_top = 32.0
+margin_right = 389.0
+margin_bottom = 56.0
+
+[node name="Label" type="Label" parent="Scroll/UI/Layout/Props/TimeToStartSpawning"]
+margin_top = 5.0
+margin_right = 145.0
+margin_bottom = 19.0
+text = "Time to start spawning"
+
+[node name="SpinBox" type="SpinBox" parent="Scroll/UI/Layout/Props/TimeToStartSpawning"]
+margin_left = 149.0
+margin_right = 389.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="BaseFallSpeed" type="HBoxContainer" parent="Scroll/UI/Layout/Props"]
+margin_top = 60.0
+margin_right = 389.0
+margin_bottom = 84.0
+
+[node name="Label" type="Label" parent="Scroll/UI/Layout/Props/BaseFallSpeed"]
+margin_top = 5.0
+margin_right = 97.0
+margin_bottom = 19.0
+text = "Base fall speed"
+
+[node name="SpinBox" type="SpinBox" parent="Scroll/UI/Layout/Props/BaseFallSpeed"]
+margin_left = 101.0
+margin_right = 389.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="DifficultySettings" type="Label" parent="Scroll/UI/Layout/Props"]
+margin_top = 88.0
+margin_right = 389.0
+margin_bottom = 116.0
+custom_fonts/font = SubResource( 2 )
+text = "Difficulty settings"
+
+[node name="FallSpeedIncreaseValue" type="HBoxContainer" parent="Scroll/UI/Layout/Props"]
+margin_top = 120.0
+margin_right = 389.0
+margin_bottom = 144.0
+
+[node name="Label" type="Label" parent="Scroll/UI/Layout/Props/FallSpeedIncreaseValue"]
+margin_top = 5.0
+margin_right = 161.0
+margin_bottom = 19.0
+text = "Fall speed increase value"
+
+[node name="SpinBox" type="SpinBox" parent="Scroll/UI/Layout/Props/FallSpeedIncreaseValue"]
+margin_left = 165.0
+margin_right = 389.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="MaxSpeedIncreases" type="HBoxContainer" parent="Scroll/UI/Layout/Props"]
+margin_top = 148.0
+margin_right = 389.0
+margin_bottom = 172.0
+
+[node name="Label" type="Label" parent="Scroll/UI/Layout/Props/MaxSpeedIncreases"]
+margin_top = 5.0
+margin_right = 204.0
+margin_bottom = 19.0
+text = "Max number of speed increases"
+
+[node name="SpinBox" type="SpinBox" parent="Scroll/UI/Layout/Props/MaxSpeedIncreases"]
+margin_left = 208.0
+margin_right = 389.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="MaxFallSpeedAllowed" type="HBoxContainer" parent="Scroll/UI/Layout/Props"]
+margin_top = 176.0
+margin_right = 389.0
+margin_bottom = 200.0
+
+[node name="Label" type="Label" parent="Scroll/UI/Layout/Props/MaxFallSpeedAllowed"]
+margin_top = 5.0
+margin_right = 145.0
+margin_bottom = 19.0
+text = "Max fall speed allowed"
+
+[node name="SpinBox" type="SpinBox" parent="Scroll/UI/Layout/Props/MaxFallSpeedAllowed"]
+margin_left = 149.0
+margin_right = 389.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="CreatePatternDialog" type="FileDialog" parent="."]
+margin_right = 600.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 450, 300 )
+popup_exclusive = true
+window_title = "Create new pattern collection"
+filters = PoolStringArray( "*.pattern ; Pattern Collections" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenPatternDialog" type="FileDialog" parent="."]
+margin_right = 315.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 450, 300 )
+window_title = "Open a File"
+mode = 0
+[connection signal="pressed" from="Scroll/UI/Layout/ToolBox/CreatePatternCollection" to="." method="_on_CreatePatternCollection_pressed"]
+[connection signal="pressed" from="Scroll/UI/Layout/ToolBox/LoadPattern" to="." method="_on_LoadPattern_pressed"]
+[connection signal="file_selected" from="CreatePatternDialog" to="." method="_on_CreatePatternDialog_file_selected"]
+[connection signal="file_selected" from="OpenPatternDialog" to="." method="_on_OpenPatternDialog_file_selected"]
