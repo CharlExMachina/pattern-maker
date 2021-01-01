@@ -1,0 +1,161 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/pattern_maker/theme/header.tres" type="Theme" id=1]
+[ext_resource path="res://addons/pattern_maker/ui/settings/Settings.gd" type="Script" id=2]
+
+[node name="Settings" type="VBoxContainer"]
+margin_right = 456.0
+margin_bottom = 260.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Layout" type="VBoxContainer" parent="."]
+margin_right = 456.0
+margin_bottom = 260.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ToolBox" type="HBoxContainer" parent="Layout"]
+margin_right = 456.0
+margin_bottom = 20.0
+custom_constants/separation = 15
+
+[node name="CreatePatternCollection" type="Button" parent="Layout/ToolBox"]
+margin_right = 170.0
+margin_bottom = 20.0
+text = "Create pattern collection"
+
+[node name="SaveChanges" type="Button" parent="Layout/ToolBox"]
+margin_left = 185.0
+margin_right = 282.0
+margin_bottom = 20.0
+text = "Save changes"
+
+[node name="LoadPattern" type="Button" parent="Layout/ToolBox"]
+margin_left = 297.0
+margin_right = 456.0
+margin_bottom = 20.0
+text = "Load pattern collection"
+
+[node name="Props" type="VBoxContainer" parent="Layout"]
+margin_top = 30.0
+margin_right = 456.0
+margin_bottom = 230.0
+
+[node name="SpawningProperties" type="Label" parent="Layout/Props"]
+margin_right = 456.0
+margin_bottom = 28.0
+theme = ExtResource( 1 )
+text = "Spawning Properties"
+
+[node name="TimeToStartSpawning" type="HBoxContainer" parent="Layout/Props"]
+margin_top = 32.0
+margin_right = 456.0
+margin_bottom = 56.0
+
+[node name="Label" type="Label" parent="Layout/Props/TimeToStartSpawning"]
+margin_top = 5.0
+margin_right = 145.0
+margin_bottom = 19.0
+text = "Time to start spawning"
+
+[node name="SpinBox" type="SpinBox" parent="Layout/Props/TimeToStartSpawning"]
+margin_left = 149.0
+margin_right = 456.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="BaseFallSpeed" type="HBoxContainer" parent="Layout/Props"]
+margin_top = 60.0
+margin_right = 456.0
+margin_bottom = 84.0
+
+[node name="Label" type="Label" parent="Layout/Props/BaseFallSpeed"]
+margin_top = 5.0
+margin_right = 97.0
+margin_bottom = 19.0
+text = "Base fall speed"
+
+[node name="SpinBox" type="SpinBox" parent="Layout/Props/BaseFallSpeed"]
+margin_left = 101.0
+margin_right = 456.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="DifficultySettings" type="Label" parent="Layout/Props"]
+margin_top = 88.0
+margin_right = 456.0
+margin_bottom = 116.0
+theme = ExtResource( 1 )
+text = "Difficulty settings"
+
+[node name="FallSpeedIncreaseValue" type="HBoxContainer" parent="Layout/Props"]
+margin_top = 120.0
+margin_right = 456.0
+margin_bottom = 144.0
+
+[node name="Label" type="Label" parent="Layout/Props/FallSpeedIncreaseValue"]
+margin_top = 5.0
+margin_right = 161.0
+margin_bottom = 19.0
+text = "Fall speed increase value"
+
+[node name="SpinBox" type="SpinBox" parent="Layout/Props/FallSpeedIncreaseValue"]
+margin_left = 165.0
+margin_right = 456.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="MaxSpeedIncreases" type="HBoxContainer" parent="Layout/Props"]
+margin_top = 148.0
+margin_right = 456.0
+margin_bottom = 172.0
+
+[node name="Label" type="Label" parent="Layout/Props/MaxSpeedIncreases"]
+margin_top = 5.0
+margin_right = 204.0
+margin_bottom = 19.0
+text = "Max number of speed increases"
+
+[node name="SpinBox" type="SpinBox" parent="Layout/Props/MaxSpeedIncreases"]
+margin_left = 208.0
+margin_right = 456.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="MaxFallSpeedAllowed" type="HBoxContainer" parent="Layout/Props"]
+margin_top = 176.0
+margin_right = 456.0
+margin_bottom = 200.0
+
+[node name="Label" type="Label" parent="Layout/Props/MaxFallSpeedAllowed"]
+margin_top = 5.0
+margin_right = 145.0
+margin_bottom = 19.0
+text = "Max fall speed allowed"
+
+[node name="SpinBox" type="SpinBox" parent="Layout/Props/MaxFallSpeedAllowed"]
+margin_left = 149.0
+margin_right = 456.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Bottom" type="HBoxContainer" parent="Layout"]
+margin_top = 240.0
+margin_right = 456.0
+margin_bottom = 260.0
+alignment = 2
+
+[node name="AddPattern" type="Button" parent="Layout/Bottom"]
+margin_left = 339.0
+margin_right = 456.0
+margin_bottom = 20.0
+text = "Add new pattern"
+align = 0
+[connection signal="pressed" from="Layout/ToolBox/CreatePatternCollection" to="." method="_on_CreatePatternCollection_pressed"]
+[connection signal="pressed" from="Layout/ToolBox/SaveChanges" to="." method="_on_SaveChanges_pressed"]
+[connection signal="pressed" from="Layout/ToolBox/LoadPattern" to="." method="_on_LoadPattern_pressed"]

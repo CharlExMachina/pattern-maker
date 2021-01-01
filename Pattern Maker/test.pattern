@@ -1,1 +1,1 @@
-{"spawning_properties":{"time_to_start_spawning":5,"base_fall_speed":7},"difficulty_settings":{"fall_speed_increase_value":1,"max_number_of_speed_increases":2,"max_fall_speed_allowed":12},"patterns":[]}
+{"spawning_properties":{"time_to_start_spawning":9,"base_fall_speed":11},"difficulty_settings":{"fall_speed_increase_value":4,"max_number_of_speed_increases":5,"max_fall_speed_allowed":12},"patterns":[]}
