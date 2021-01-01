@@ -37,6 +37,14 @@ func update_data(pattern_collection: Dictionary) -> void:
 	diff_settings["max_number_of_speed_increases"] = max_number_of_speed_increases.value
 	diff_settings["max_fall_speed_allowed"] = max_fall_speed_allowed.value
 
+func hide_controls() -> void:
+	$Layout/Props.hide()
+	$Layout/Bottom.hide()
+
+func display_controls() -> void:
+	$Layout/Props.show()
+	$Layout/Bottom.show()
+
 func _on_CreatePatternCollection_pressed() -> void:
 	emit_signal("create_pattern_collection")
 

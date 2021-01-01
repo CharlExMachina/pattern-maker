@@ -12,13 +12,17 @@ var default_pattern_values = preload("res://addons/pattern_maker/default_config/
 
 func _ready() -> void:
 	create_pattern_collection_dialog.get_ok().text = "Save pattern collection"
-	pass
+
+	if current_pattern_collection.empty() and current_pattern_collection_path.empty():
+		$Scroll/UI/Settings.hide_controls()
+		$NoCollectionAlert.show()
 
 func cleanup_patterns_in_gui() -> void:
 	var patterns_container = $Scroll/UI/Patterns
 	for child in patterns_container.get_children():
 		child.queue_free()
 
+# TODO: Set the newly created pattern to be the one edited at the moment
 func create_pattern_file() -> void:
 	var save_dir = create_pattern_collection_dialog.current_dir + "/"
 	var file_name = create_pattern_collection_dialog.get_line_edit().text
@@ -45,6 +49,9 @@ func open_pattern_collection_file(path: String) -> void:
 
 	current_pattern_collection = pattern_data
 	current_pattern_collection_path = path
+
+	$NoCollectionAlert.hide()
+	$Scroll/UI/Settings.display_controls()
 
 	load_pattern_collection_to_editor(current_pattern_collection)
 	cleanup_patterns_in_gui()
