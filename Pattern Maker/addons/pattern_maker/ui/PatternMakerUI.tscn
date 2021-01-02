@@ -104,6 +104,7 @@ margin_right = 878.0
 margin_bottom = 89.0
 text = "You can create a new pattern collection by hitting the \"Create pattern collection\" button above, or open an already existing one by hitting 
 the \"Load pattern collection\" button."
+[connection signal="add_pattern" from="Scroll/UI/Settings" to="." method="_on_Settings_add_pattern"]
 [connection signal="create_pattern_collection" from="Scroll/UI/Settings" to="." method="_on_Settings_create_pattern_collection"]
 [connection signal="open_pattern_collection" from="Scroll/UI/Settings" to="." method="_on_Settings_open_pattern_collection"]
 [connection signal="save_changes" from="Scroll/UI/Settings" to="." method="_on_Settings_save_changes"]

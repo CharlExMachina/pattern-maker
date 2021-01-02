@@ -4,6 +4,7 @@ extends VBoxContainer
 signal create_pattern_collection
 signal open_pattern_collection
 signal save_changes
+signal add_pattern
 
 onready var time_to_start_spawning = $Layout/Props/TimeToStartSpawning/SpinBox
 onready var base_fall_speed = $Layout/Props/BaseFallSpeed/SpinBox
@@ -26,6 +27,10 @@ func load_spawning_properties(props: Dictionary) -> void:
 
 	time_to_start_spawning.value = time_to_start_spawning_ref
 	base_fall_speed.value = base_fall_speed_ref
+
+func set_pattern_path(path: String) -> void:
+	$Layout/PatternCollection.show()
+	$Layout/PatternCollection.text += " " + path
 
 func update_data(pattern_collection: Dictionary) -> void:
 	var spawning_props = pattern_collection["spawning_properties"]
@@ -53,3 +58,6 @@ func _on_LoadPattern_pressed() -> void:
 
 func _on_SaveChanges_pressed() -> void:
 	emit_signal("save_changes")
+
+func _on_AddPattern_pressed() -> void:
+	emit_signal("add_pattern")

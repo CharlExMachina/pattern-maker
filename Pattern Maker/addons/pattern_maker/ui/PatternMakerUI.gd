@@ -28,7 +28,6 @@ func hide_alert() -> void:
 	$NoCollectionAlert.hide()
 	$Scroll/UI/Settings.display_controls()
 
-# TODO: Set the newly created pattern to be the one edited at the moment
 func create_pattern_file() -> void:
 	var save_dir = create_pattern_collection_dialog.current_dir + "/"
 	var file_name = create_pattern_collection_dialog.get_line_edit().text
@@ -71,6 +70,7 @@ func load_pattern_collection_to_editor(pattern_data: Dictionary) -> void:
 
 	set_spawning_props(spawning_properties)
 	set_difficulty_settings(difficulty_settings)
+	$Scroll/UI/Settings.set_pattern_path(current_pattern_collection_path)
 
 func set_spawning_props(props: Dictionary) -> void:
 	$Scroll/UI/Settings.load_spawning_properties(props)
@@ -79,7 +79,6 @@ func set_difficulty_settings(settings: Dictionary) -> void:
 	$Scroll/UI/Settings.load_difficulty_settings(settings)
 
 func display_patterns() -> void:
-	print(current_pattern_collection)
 	var patterns: Array = current_pattern_collection["patterns"]
 
 	for pattern in patterns:
@@ -115,3 +114,9 @@ func _on_Settings_save_changes() -> void:
 	file.open(current_pattern_collection_path, File.WRITE)
 	file.store_string(json)
 	file.close()
+
+func _on_Settings_add_pattern() -> void:
+	var default_pattern = default_pattern_values.get_default_pattern()
+	var patterns: Array = current_pattern_collection["patterns"]
+	patterns.append(default_pattern)
+	display_patterns()

@@ -41,6 +41,13 @@ margin_right = 456.0
 margin_bottom = 20.0
 text = "Load pattern collection"
 
+[node name="PatternCollection" type="Label" parent="Layout"]
+visible = false
+margin_top = 30.0
+margin_right = 456.0
+margin_bottom = 44.0
+text = "Currently editing:"
+
 [node name="Props" type="VBoxContainer" parent="Layout"]
 margin_top = 30.0
 margin_right = 456.0
@@ -159,3 +166,4 @@ align = 0
 [connection signal="pressed" from="Layout/ToolBox/CreatePatternCollection" to="." method="_on_CreatePatternCollection_pressed"]
 [connection signal="pressed" from="Layout/ToolBox/SaveChanges" to="." method="_on_SaveChanges_pressed"]
 [connection signal="pressed" from="Layout/ToolBox/LoadPattern" to="." method="_on_LoadPattern_pressed"]
+[connection signal="pressed" from="Layout/Bottom/AddPattern" to="." method="_on_AddPattern_pressed"]
