@@ -12,15 +12,21 @@ var default_pattern_values = preload("res://addons/pattern_maker/default_config/
 
 func _ready() -> void:
 	create_pattern_collection_dialog.get_ok().text = "Save pattern collection"
-
-	if current_pattern_collection.empty() and current_pattern_collection_path.empty():
-		$Scroll/UI/Settings.hide_controls()
-		$NoCollectionAlert.show()
+	display_alert()
 
 func cleanup_patterns_in_gui() -> void:
 	var patterns_container = $Scroll/UI/Patterns
 	for child in patterns_container.get_children():
 		child.queue_free()
+
+func display_alert() -> void:
+	if current_pattern_collection.empty() and current_pattern_collection_path.empty():
+		$Scroll/UI/Settings.hide_controls()
+		$NoCollectionAlert.show()
+
+func hide_alert() -> void:
+	$NoCollectionAlert.hide()
+	$Scroll/UI/Settings.display_controls()
 
 # TODO: Set the newly created pattern to be the one edited at the moment
 func create_pattern_file() -> void:
@@ -31,8 +37,8 @@ func create_pattern_file() -> void:
 	if not ".pattern" in file_name:
 		file_name += extension
 
-	var base_pattern_dict: Dictionary = default_pattern_values.get_default_pattern_collection()
-	var json_config: String = JSON.print(base_pattern_dict)
+	var base_pattern_collection: Dictionary = default_pattern_values.get_default_pattern_collection()
+	var json_config: String = JSON.print(base_pattern_collection)
 
 	var path = save_dir + file_name
 	var file = File.new()
@@ -40,6 +46,8 @@ func create_pattern_file() -> void:
 	file.store_string(json_config)
 	file.close()
 	create_pattern_collection_dialog.hide()
+
+	open_pattern_collection_file(path)
 
 func open_pattern_collection_file(path: String) -> void:
 	var file = File.new()
@@ -50,8 +58,7 @@ func open_pattern_collection_file(path: String) -> void:
 	current_pattern_collection = pattern_data
 	current_pattern_collection_path = path
 
-	$NoCollectionAlert.hide()
-	$Scroll/UI/Settings.display_controls()
+	hide_alert()
 
 	load_pattern_collection_to_editor(current_pattern_collection)
 	cleanup_patterns_in_gui()
