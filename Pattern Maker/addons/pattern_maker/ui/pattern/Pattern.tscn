@@ -2,7 +2,7 @@
 
 [ext_resource path="res://addons/pattern_maker/theme/header.tres" type="Theme" id=1]
 [ext_resource path="res://addons/pattern_maker/ui/pattern/Pattern.gd" type="Script" id=2]
-[ext_resource path="res://addons/pattern_maker/ui/position_buttons/PositionButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/pattern_maker/ui/positions_row/PositionsRow.tscn" type="PackedScene" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.145098, 0.145098, 0.145098, 1 )
@@ -238,8 +238,4 @@ margin_top = 324.0
 margin_right = 659.0
 margin_bottom = 406.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Positions"]
-margin_right = 659.0
-margin_bottom = 82.0
-
-[node name="PositionButton" parent="UI/Positions/HBoxContainer" instance=ExtResource( 3 )]
+[node name="PositionsRow" parent="UI/Positions" instance=ExtResource( 3 )]

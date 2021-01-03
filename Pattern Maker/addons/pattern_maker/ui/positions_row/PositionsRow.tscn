@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/pattern_maker/ui/positions_row/PositionsRow.gd" type="Script" id=1]
+[ext_resource path="res://addons/pattern_maker/ui/position_buttons/PositionButton.tscn" type="PackedScene" id=2]
+
+[node name="PositionsRow" type="HBoxContainer"]
+margin_right = 659.0
+margin_bottom = 82.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PositionButton_L" parent="." instance=ExtResource( 2 )]
+
+[node name="PositionButton_C" parent="." instance=ExtResource( 2 )]
+margin_left = 68.0
+margin_right = 132.0
+position_value = 2
+
+[node name="PositionButton_R" parent="." instance=ExtResource( 2 )]
+margin_left = 136.0
+margin_right = 200.0
+position_value = 1
+
+[node name="PositionButton_RND" parent="." instance=ExtResource( 2 )]
+margin_left = 204.0
+margin_right = 268.0
+position_value = 3
