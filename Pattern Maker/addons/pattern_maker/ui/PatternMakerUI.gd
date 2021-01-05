@@ -86,6 +86,7 @@ func display_patterns() -> void:
 		var patterns_container = $Scroll/UI/Patterns
 
 		if patterns.find(pattern) + 1 > patterns_container.get_child_count():
+			pattern_display_instance.pattern_ref = patterns[patterns.find(pattern)]
 			patterns_container.add_child(pattern_display_instance)
 
 func _on_CreatePatternDialog_file_selected(path: String) -> void:
@@ -101,6 +102,12 @@ func _on_AddPattern_pressed() -> void:
 
 	display_patterns()
 
+func update_patterns() -> void:
+	current_pattern_collection["patterns"] = []
+	for pattern in $Scroll/UI/Patterns.get_children():
+		var ref = pattern.pattern_ref
+		current_pattern_collection["patterns"].append(ref)
+
 func _on_Settings_create_pattern_collection() -> void:
 	create_pattern_collection_dialog.popup_centered()
 
@@ -109,6 +116,7 @@ func _on_Settings_open_pattern_collection() -> void:
 
 func _on_Settings_save_changes() -> void:
 	$Scroll/UI/Settings.update_data(current_pattern_collection)
+	update_patterns()
 	var json = JSON.print(current_pattern_collection)
 	var file: File = File.new()
 	file.open(current_pattern_collection_path, File.WRITE)

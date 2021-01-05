@@ -24,3 +24,6 @@ func _on_position_button_changed_spawn_type(spawn_item: String,
 
 	print(spawn_item)
 	pass
+
+func _on_Delete_pressed() -> void:
+	queue_free()

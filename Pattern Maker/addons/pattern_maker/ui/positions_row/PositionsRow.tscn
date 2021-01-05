@@ -12,6 +12,7 @@ __meta__ = {
 }
 
 [node name="PositionButton_L" parent="." instance=ExtResource( 2 )]
+position_value = 0
 
 [node name="PositionButton_C" parent="." instance=ExtResource( 2 )]
 margin_left = 68.0
@@ -27,3 +28,10 @@ position_value = 1
 margin_left = 204.0
 margin_right = 268.0
 position_value = 3
+
+[node name="Delete" type="Button" parent="."]
+margin_left = 272.0
+margin_right = 327.0
+margin_bottom = 82.0
+text = "Delete"
+[connection signal="pressed" from="Delete" to="." method="_on_Delete_pressed"]

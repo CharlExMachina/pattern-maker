@@ -28,7 +28,7 @@ func get_default_pattern() -> Dictionary:
 			"thresholds": {
 				"min_time_between_spawns": 0.5,
 				"min_cooldown_time": 0
-			},
+			}
+		},
 		"spawn_points": []
-		}
 	}

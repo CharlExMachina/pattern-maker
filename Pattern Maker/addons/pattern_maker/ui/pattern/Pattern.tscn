@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/pattern_maker/theme/header.tres" type="Theme" id=1]
 [ext_resource path="res://addons/pattern_maker/ui/pattern/Pattern.gd" type="Script" id=2]
-[ext_resource path="res://addons/pattern_maker/ui/positions_row/PositionsRow.tscn" type="PackedScene" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.145098, 0.145098, 0.145098, 1 )
@@ -27,7 +26,7 @@ __meta__ = {
 
 [node name="UI" type="VBoxContainer" parent="."]
 margin_right = 659.0
-margin_bottom = 406.0
+margin_bottom = 348.0
 
 [node name="Data" type="VBoxContainer" parent="UI"]
 margin_right = 659.0
@@ -106,6 +105,7 @@ margin_left = 73.0
 margin_right = 373.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 300, 0 )
+step = 0.1
 tick_count = 10
 ticks_on_borders = true
 
@@ -156,6 +156,7 @@ margin_left = 167.0
 margin_right = 367.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 200, 0 )
+step = 0.1
 tick_count = 10
 ticks_on_borders = true
 
@@ -182,6 +183,7 @@ margin_left = 281.0
 margin_right = 481.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 200, 0 )
+step = 0.1
 tick_count = 10
 ticks_on_borders = true
 
@@ -236,6 +238,14 @@ rect_min_size = Vector2( 250, 0 )
 [node name="Positions" type="VBoxContainer" parent="UI"]
 margin_top = 324.0
 margin_right = 659.0
-margin_bottom = 406.0
+margin_bottom = 324.0
 
-[node name="PositionsRow" parent="UI/Positions" instance=ExtResource( 3 )]
+[node name="AddPositionsRow" type="Button" parent="UI"]
+margin_top = 328.0
+margin_right = 659.0
+margin_bottom = 348.0
+text = "Add positions row"
+[connection signal="value_changed" from="UI/Data/SpawnRate/HSlider" to="." method="_on_SpawnRate_value_changed"]
+[connection signal="value_changed" from="UI/Data/CooldownFactor/HSlider" to="." method="_on_CooldownFactor_value_changed"]
+[connection signal="value_changed" from="UI/Data/BetweenSpawnsFactor/HSlider" to="." method="_on_BetweenSpawnsFactor_value_changed"]
+[connection signal="pressed" from="UI/AddPositionsRow" to="." method="_on_AddPositionsRow_pressed"]
