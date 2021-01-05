@@ -13,9 +13,11 @@ var default_pattern_values = preload("res://addons/pattern_maker/default_config/
 func _ready() -> void:
 	create_pattern_collection_dialog.get_ok().text = "Save pattern collection"
 	display_alert()
+	if current_pattern_collection.empty():
+		$Scroll/UI/Settings.hide_save_button()
 
 func cleanup_patterns_in_gui() -> void:
-	var patterns_container = $Scroll/UI/Patterns
+	var patterns_container = $Scroll/UI/ScrollContainer/Patterns
 	for child in patterns_container.get_children():
 		child.queue_free()
 
@@ -56,6 +58,7 @@ func open_pattern_collection_file(path: String) -> void:
 
 	current_pattern_collection = pattern_data
 	current_pattern_collection_path = path
+	$Scroll/UI/Settings.display_save_button()
 
 	hide_alert()
 
@@ -83,7 +86,7 @@ func display_patterns() -> void:
 
 	for pattern in patterns:
 		var pattern_display_instance = pattern_res.instance()
-		var patterns_container = $Scroll/UI/Patterns
+		var patterns_container = $Scroll/UI/ScrollContainer/Patterns
 
 		if patterns.find(pattern) + 1 > patterns_container.get_child_count():
 			pattern_display_instance.pattern_ref = patterns[patterns.find(pattern)]
@@ -115,6 +118,9 @@ func _on_Settings_open_pattern_collection() -> void:
 	open_pattern_collection_file_dialog.popup_centered()
 
 func _on_Settings_save_changes() -> void:
+	if current_pattern_collection.empty():
+		return
+
 	$Scroll/UI/Settings.update_data(current_pattern_collection)
 	update_patterns()
 	var json = JSON.print(current_pattern_collection)

@@ -32,6 +32,12 @@ func set_pattern_path(path: String) -> void:
 	$Layout/PatternCollection.show()
 	$Layout/PatternCollection.text += " " + path
 
+func hide_save_button() -> void:
+	$Layout/ToolBox/SaveChanges.hide()
+
+func display_save_button() -> void:
+	$Layout/ToolBox/SaveChanges.show()
+
 func update_data(pattern_collection: Dictionary) -> void:
 	var spawning_props = pattern_collection["spawning_properties"]
 	spawning_props["time_to_start_spawning"] = time_to_start_spawning.value
