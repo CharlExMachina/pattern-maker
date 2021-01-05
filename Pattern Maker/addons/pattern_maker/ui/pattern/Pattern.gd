@@ -1,8 +1,6 @@
 tool
 extends PanelContainer
 
-signal save_to_collection
-
 var pattern_ref: Dictionary setget pattern_ref_set, pattern_ref_get
 
 var position_row_res = preload("res://addons/pattern_maker/ui/positions_row/PositionsRow.tscn")
@@ -34,11 +32,11 @@ func pattern_ref_get() -> Dictionary:
 	pattern_ref["cooldown_time"] = cooldown_time
 	pattern_ref["time_between_spawns"] = time_between_spawns
 	pattern_ref["start_delay_in_seconds"] = start_delay_in_seconds
-	pattern_ref["spawn_rate"] = spawn_rate
+	pattern_ref["spawn_rate"] = stepify(spawn_rate, 0.1)
 
 	difficulty_settings["max_number_of_difficulty_increases"] = max_number_of_difficulty_increases
-	difficulty_settings["cooldown_factor"] = cooldown_factor
-	difficulty_settings["between_spawns_factor"] = between_spawns_factor
+	difficulty_settings["cooldown_factor"] = stepify(cooldown_factor, 0.1)
+	difficulty_settings["between_spawns_factor"] = stepify(between_spawns_factor, 0.1)
 
 	thresholds["min_time_between_spawns"] = min_time_between_spawns
 	thresholds["min_cooldown_time"] = min_cooldown_time
@@ -46,6 +44,11 @@ func pattern_ref_get() -> Dictionary:
 	difficulty_settings["thresholds"] = thresholds
 	pattern_ref["difficulty_settings"] = difficulty_settings
 
+	pattern_ref["spawn_points"] = []
+
+	for position in $UI/Positions.get_children():
+		var pos_data = position.get_position_data()
+		pattern_ref["spawn_points"].append(pos_data)
 	return pattern_ref
 
 func load_pattern_item_data(data: Dictionary) -> void:
@@ -68,8 +71,11 @@ func load_pattern_item_data(data: Dictionary) -> void:
 	$UI/Data/MinTimeBetweenSpawns/SpinBox.value = thresholds["min_time_between_spawns"]
 	$UI/Data/MinCooldownTime/SpinBox.value = thresholds["min_cooldown_time"]
 
-func save_modified_data() -> void:
-	emit_signal("save_to_collection", current_pattern_item, item_index)
+	var positions: Array = data["spawn_points"]
+	for position in positions:
+		var instance = position_row_res.instance()
+		instance.init_values(position["type"], position["position"])
+		$UI/Positions.add_child(instance)
 
 func _on_AddPositionsRow_pressed() -> void:
 	var instance = position_row_res.instance()

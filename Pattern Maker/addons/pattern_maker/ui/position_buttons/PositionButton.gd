@@ -18,6 +18,16 @@ func _ready() -> void:
 	$PopupMenu.add_item("Fruit")
 	$PopupMenu.add_item("Bomb")
 
+func activate_position(type: String) -> void:
+	if type == "fruit":
+		current_spawn_item = "fruit"
+		$Button.modulate = ACTIVE_COLOR
+		update_spawn_item()
+	elif type == "bomb":
+		current_spawn_item = "bomb"
+		$Button.modulate = ACTIVE_COLOR
+		update_spawn_item()
+
 func set_position_val(new_position: int) -> void:
 	if position_value != new_position:
 		match new_position:
@@ -42,7 +52,6 @@ func _on_Button_gui_input(event: InputEvent) -> void:
 					current_spawn_item = "fruit"
 					$Button.modulate = ACTIVE_COLOR
 					update_spawn_item()
-					emit_signal("changed_spawn_type", current_spawn_item, position_value)
 			BUTTON_RIGHT:
 				if is_active:
 					var pos = rect_global_position + OFFSET
@@ -66,5 +75,3 @@ func _on_PopupMenu_id_pressed(id: int) -> void:
 	elif id == 1:
 		current_spawn_item = "bomb"
 		$Button.texture_normal = BOMB_ICON
-
-	emit_signal("changed_spawn_type", current_spawn_item, position_value)
