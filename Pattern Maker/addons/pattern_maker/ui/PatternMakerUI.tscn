@@ -38,22 +38,18 @@ __meta__ = {
 
 [node name="UI" type="HBoxContainer" parent="Scroll"]
 margin_right = 1024.0
-margin_bottom = 260.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
 custom_constants/separation = 30
 
 [node name="Settings" parent="Scroll/UI" instance=ExtResource( 1 )]
+margin_right = 344.0
+margin_bottom = 20.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Scroll/UI"]
-margin_left = 486.0
+[node name="Patterns" type="VBoxContainer" parent="Scroll/UI"]
+margin_left = 374.0
 margin_right = 1024.0
-margin_bottom = 260.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Patterns" type="VBoxContainer" parent="Scroll/UI/ScrollContainer"]
-margin_right = 538.0
-margin_bottom = 260.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 30

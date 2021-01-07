@@ -63,6 +63,9 @@ func update_spawn_item() -> void:
 	elif current_spawn_item == "bomb":
 		$Button.texture_normal = BOMB_ICON
 
+	emit_signal("changed_spawn_type", current_spawn_item, position_value)
+
+
 func reset_values() -> void:
 	is_active = false
 	$Button.texture_normal = NONE_ICON

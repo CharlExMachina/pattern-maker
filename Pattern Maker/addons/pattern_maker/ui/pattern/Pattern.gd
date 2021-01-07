@@ -6,7 +6,11 @@ var pattern_ref: Dictionary setget pattern_ref_set, pattern_ref_get
 var position_row_res = preload("res://addons/pattern_maker/ui/positions_row/PositionsRow.tscn")
 
 var current_pattern_item: Dictionary
-var item_index: int
+var item_index: int setget item_index_set
+
+func item_index_set(new_value: int) -> void:
+	$UI/Data/PatternName.text = "Pattern " + str(new_value)
+	item_index = new_value
 
 func pattern_ref_set(new_value: Dictionary) -> void:
 	load_pattern_item_data(new_value)

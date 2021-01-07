@@ -30,7 +30,7 @@ func load_spawning_properties(props: Dictionary) -> void:
 
 func set_pattern_path(path: String) -> void:
 	$Layout/PatternCollection.show()
-	$Layout/PatternCollection.text += " " + path
+	$Layout/PatternCollection.text = "Currently editing " + path
 
 func hide_save_button() -> void:
 	$Layout/ToolBox/SaveChanges.hide()
@@ -60,6 +60,7 @@ func _on_CreatePatternCollection_pressed() -> void:
 	emit_signal("create_pattern_collection")
 
 func _on_LoadPattern_pressed() -> void:
+	$Layout/PatternCollection.text = ""
 	emit_signal("open_pattern_collection")
 
 func _on_SaveChanges_pressed() -> void:
