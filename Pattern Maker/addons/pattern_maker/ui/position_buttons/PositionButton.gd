@@ -19,6 +19,8 @@ func _ready() -> void:
 	$PopupMenu.add_item("Bomb")
 
 func activate_position(type: String) -> void:
+	is_active = true
+
 	if type == "fruit":
 		current_spawn_item = "fruit"
 		$Button.modulate = ACTIVE_COLOR
@@ -78,3 +80,5 @@ func _on_PopupMenu_id_pressed(id: int) -> void:
 	elif id == 1:
 		current_spawn_item = "bomb"
 		$Button.texture_normal = BOMB_ICON
+
+	update_spawn_item()
