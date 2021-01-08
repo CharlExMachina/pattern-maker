@@ -10,6 +10,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 expand_margin_left = 10.0
+expand_margin_right = 10.0
 expand_margin_top = 10.0
 expand_margin_bottom = 10.0
 
@@ -32,11 +33,22 @@ margin_bottom = 348.0
 margin_right = 659.0
 margin_bottom = 320.0
 
-[node name="PatternName" type="Label" parent="UI/Data"]
+[node name="Header" type="HBoxContainer" parent="UI/Data"]
 margin_right = 659.0
 margin_bottom = 28.0
+
+[node name="PatternName" type="Label" parent="UI/Data/Header"]
+margin_right = 600.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
 theme = ExtResource( 1 )
 text = "Pattern 1"
+
+[node name="DeletePattern" type="Button" parent="UI/Data/Header"]
+margin_left = 604.0
+margin_right = 659.0
+margin_bottom = 28.0
+text = "Delete"
 
 [node name="CooldownTime" type="HBoxContainer" parent="UI/Data"]
 margin_top = 32.0
@@ -245,6 +257,7 @@ margin_top = 328.0
 margin_right = 659.0
 margin_bottom = 348.0
 text = "Add positions row"
+[connection signal="pressed" from="UI/Data/Header/DeletePattern" to="." method="_on_DeletePattern_pressed"]
 [connection signal="value_changed" from="UI/Data/SpawnRate/HSlider" to="." method="_on_SpawnRate_value_changed"]
 [connection signal="value_changed" from="UI/Data/CooldownFactor/HSlider" to="." method="_on_CooldownFactor_value_changed"]
 [connection signal="value_changed" from="UI/Data/BetweenSpawnsFactor/HSlider" to="." method="_on_BetweenSpawnsFactor_value_changed"]

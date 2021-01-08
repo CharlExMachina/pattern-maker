@@ -79,10 +79,15 @@ func set_spawning_props(props: Dictionary) -> void:
 func set_difficulty_settings(settings: Dictionary) -> void:
 	$Scroll/UI/Settings.load_difficulty_settings(settings)
 
+func update_pattern_headers() -> void:
+	var patterns_container = $Scroll/UI/Patterns
+
+	for i in patterns_container.get_child_count():
+		var pattern = patterns_container.get_child(i)
+		pattern.item_index = i + 1
+
 func display_patterns() -> void:
 	var patterns: Array = current_pattern_collection["patterns"]
-
-	print($Scroll/UI/Patterns.get_child_count())
 
 	for i in patterns.size():
 		var pattern_display_instance = pattern_res.instance()
@@ -92,20 +97,8 @@ func display_patterns() -> void:
 			pattern_display_instance.pattern_ref = patterns[i]
 			pattern_display_instance.item_index = i + 1
 			patterns_container.add_child(pattern_display_instance)
-#
-#		if i + 1 > patterns_container.get_child_count():
-#			pattern_display_instance.pattern_ref = patterns[i]
-#			pattern_display_instance.item_index = i + 1
-#			patterns_container.add_child(pattern_display_instance)
-# TODO: return here!
-#	for pattern in patterns:
-#		var pattern_display_instance = pattern_res.instance()
-#		var patterns_container = $Scroll/UI/Patterns
-#
-#		if patterns.find(pattern) + 1 > patterns_container.get_child_count():
-#			pattern_display_instance.pattern_ref = patterns[patterns.find(pattern)]
-#			pattern_display_instance.item_index = patterns.find(pattern) + 1
-#			patterns_container.add_child(pattern_display_instance)
+			pattern_display_instance.connect("tree_exited", self,
+					"_on_Pattern_tree_exited")
 
 func cleanup_data() -> void:
 	current_pattern_collection_path = ""
@@ -153,3 +146,6 @@ func _on_Settings_add_pattern() -> void:
 	var patterns: Array = current_pattern_collection["patterns"]
 	patterns.append(default_pattern)
 	display_patterns()
+
+func _on_Pattern_tree_exited() -> void:
+	update_pattern_headers()

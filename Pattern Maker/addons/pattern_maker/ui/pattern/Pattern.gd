@@ -1,6 +1,8 @@
 tool
 extends PanelContainer
 
+signal deleted_pattern
+
 var pattern_ref: Dictionary setget pattern_ref_set, pattern_ref_get
 
 var position_row_res = preload("res://addons/pattern_maker/ui/positions_row/PositionsRow.tscn")
@@ -9,7 +11,7 @@ var current_pattern_item: Dictionary
 var item_index: int setget item_index_set
 
 func item_index_set(new_value: int) -> void:
-	$UI/Data/PatternName.text = "Pattern " + str(new_value)
+	$UI/Data/Header/PatternName.text = "Pattern " + str(new_value)
 	item_index = new_value
 
 func pattern_ref_set(new_value: Dictionary) -> void:
@@ -99,3 +101,6 @@ func _on_CooldownFactor_value_changed(value: float) -> void:
 
 func _on_BetweenSpawnsFactor_value_changed(value: float) -> void:
 		$UI/Data/BetweenSpawnsFactor/Percentage.text = str(stepify(value, 0.1)) + "%"
+
+func _on_DeletePattern_pressed() -> void:
+	queue_free()
