@@ -20,7 +20,7 @@ func pattern_ref_set(new_value: Dictionary) -> void:
 
 func pattern_ref_get() -> Dictionary:
 	var cooldown_time: float = $UI/Data/CooldownTime/SpinBox.value
-	var time_between_spawns: float = $UI/Data/MinTimeBetweenSpawns/SpinBox.value
+	var time_between_spawns: float = $UI/Data/TimeBetweenSpawns/SpinBox.value
 	var start_delay_in_seconds: float = $UI/Data/StartDelay/SpinBox.value
 	var spawn_rate: float = $UI/Data/SpawnRate/HSlider.value
 
