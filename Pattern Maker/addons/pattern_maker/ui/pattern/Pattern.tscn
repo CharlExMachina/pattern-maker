@@ -155,6 +155,7 @@ margin_right = 424.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 200, 0 )
 step = 1.0
+rounded = true
 
 [node name="CooldownFactor" type="HBoxContainer" parent="UI/Data"]
 margin_top = 196.0
